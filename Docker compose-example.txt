@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    image: 'hub-multiuser:latest'
+    restart: unless-stopped
+    networks:
+      nginx-manager_default:
+        ipv4_address: 172.17.0.15
+    ports:
+      - '8000:8000'
+    volumes:
+      - hub-multiuser:/srv/jupyterhub
+      - hub-multiuser-home:/home
+
+volumes:
+  hub-multiuser:
+  hub-multiuser-home:
+  
+networks:
+  nginx-manager_default:
+    external: true   
